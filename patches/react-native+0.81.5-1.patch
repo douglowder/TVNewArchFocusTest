@@ -1,0 +1,24 @@
+diff --git a/node_modules/react-native/React/Fabric/Mounting/ComponentViews/View/RCTViewComponentView.mm b/node_modules/react-native/React/Fabric/Mounting/ComponentViews/View/RCTViewComponentView.mm
+index 272c785..12cd5d2 100644
+--- a/node_modules/react-native/React/Fabric/Mounting/ComponentViews/View/RCTViewComponentView.mm
++++ b/node_modules/react-native/React/Fabric/Mounting/ComponentViews/View/RCTViewComponentView.mm
+@@ -1160,7 +1160,6 @@ const CGFloat BACKGROUND_COLOR_ZPOSITION = -1024.0f;
+   // `autoFocus`
+   if (oldViewProps.autoFocus != newViewProps.autoFocus) {
+     _autoFocus = newViewProps.autoFocus;
+-    [self handleFocusGuide];
+   }
+ 
+   _trapFocusUp = newViewProps.trapFocusUp;
+@@ -1222,6 +1221,11 @@ const CGFloat BACKGROUND_COLOR_ZPOSITION = -1024.0f;
+       [self requestFocusSelf];
+     }
+   }
++  if (_props->autoFocus) {
++    [self handleFocusGuide];
++  } else {
++    [self removeFocusGuide];
++  }
+ 
+ #endif
+ 
