@@ -1,0 +1,13 @@
+diff --git a/node_modules/react-native-screens/android/src/main/java/com/swmansion/rnscreens/Screen.kt b/node_modules/react-native-screens/android/src/main/java/com/swmansion/rnscreens/Screen.kt
+index 2b7dcff..9eeafd2 100644
+--- a/node_modules/react-native-screens/android/src/main/java/com/swmansion/rnscreens/Screen.kt
++++ b/node_modules/react-native-screens/android/src/main/java/com/swmansion/rnscreens/Screen.kt
+@@ -561,6 +561,8 @@ class Screen(
+                 )
+             }
+         }
++        // When the screen attaches, it should request focus (needed for TV)
++        fragment?.view?.requestFocus()
+     }
+ 
+     private fun dispatchSheetDetentChanged(
