@@ -131,7 +131,7 @@ const MenuScreen = () => {
     <TVFocusGuideView
       ref={focusGuideRef}
       // Enabling this breaks focus on tvOS
-      autoFocus={false}
+      autoFocus={true}
       style={{
         flex: 1,
         alignItems: 'center',
