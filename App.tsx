@@ -116,16 +116,16 @@ const MenuScreen = () => {
   const navigation = useNavigation();
   const route = useRoute();
 
-  useEffect(() => {
-    firstButtonRef.current?.requestTVFocus();
-  }, []);
+  // useEffect(() => {
+  //   firstButtonRef.current?.requestTVFocus();
+  // }, []);
 
-  useFocusEffect(
-    useCallback(() => {
-      // Disabling this will cause the focus to go to the main screen when going back
-      focusGuideRef.current?.requestTVFocus();
-    }, []),
-  );
+  // useFocusEffect(
+  //   useCallback(() => {
+  //    // Disabling this will cause the focus to go to the main screen when going back
+  //     focusGuideRef.current?.requestTVFocus();
+  //   }, []),
+  // );
 
   return (
     <TVFocusGuideView
