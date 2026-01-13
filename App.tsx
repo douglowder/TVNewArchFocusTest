@@ -75,6 +75,7 @@ const MainStackScreen = () => {
       }}
     >
       <CustomButton
+        focusable={isFocused}
         onFocus={() => console.log('main button focused')}
         onPress={() => {
           navigation.navigate('MenuStack');
