@@ -60,13 +60,11 @@ export default NavigationFocusTest;
 
 const MainStackScreen = () => {
   const navigation = useNavigation();
-
   const isFocused = useIsFocused();
 
   return (
-    <View
-      accessible={isFocused}
-      importantForAccessibility={isFocused ? 'yes' : 'no-hide-descendants'}
+    <TVFocusGuideView
+      focusable={isFocused}
       style={{
         flex: 1,
         opacity: isFocused ? 1 : 0.5,
@@ -82,7 +80,7 @@ const MainStackScreen = () => {
       >
         Open a modal
       </CustomButton>
-    </View>
+    </TVFocusGuideView>
   );
 };
 
