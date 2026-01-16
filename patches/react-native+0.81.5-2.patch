@@ -1,0 +1,19 @@
+diff --git a/node_modules/react-native/ReactAndroid/src/main/java/com/facebook/react/views/view/ReactViewManager.kt b/node_modules/react-native/ReactAndroid/src/main/java/com/facebook/react/views/view/ReactViewManager.kt
+index 56f982b..0ee7c3d 100644
+--- a/node_modules/react-native/ReactAndroid/src/main/java/com/facebook/react/views/view/ReactViewManager.kt
++++ b/node_modules/react-native/ReactAndroid/src/main/java/com/facebook/react/views/view/ReactViewManager.kt
+@@ -103,13 +103,13 @@ public open class ReactViewManager : ReactClippingViewManager<ReactViewGroup>()
+ 
+   @ReactProp(name = "tvFocusable")
+   public open fun setTvFocusable(view: ReactViewGroup, focusable: Boolean) {
+-    setFocusable(view, focusable)
+     if (!focusable) {
+       view.isFocusable = false
+       view.descendantFocusability = ViewGroup.FOCUS_BLOCK_DESCENDANTS
+     } else {
+       view.descendantFocusability = ViewGroup.FOCUS_AFTER_DESCENDANTS
+     }
++    setFocusable(view, focusable)
+   }
+ 
+   @ReactProp(name = ViewProps.ACCESSIBILITY_ORDER)
