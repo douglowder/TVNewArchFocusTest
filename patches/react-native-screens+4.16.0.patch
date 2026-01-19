@@ -1,13 +1,32 @@
-diff --git a/node_modules/react-native-screens/android/src/main/java/com/swmansion/rnscreens/Screen.kt b/node_modules/react-native-screens/android/src/main/java/com/swmansion/rnscreens/Screen.kt
-index 2b7dcff..9eeafd2 100644
---- a/node_modules/react-native-screens/android/src/main/java/com/swmansion/rnscreens/Screen.kt
-+++ b/node_modules/react-native-screens/android/src/main/java/com/swmansion/rnscreens/Screen.kt
-@@ -561,6 +561,8 @@ class Screen(
-                 )
+diff --git a/node_modules/react-native-screens/android/src/main/java/com/swmansion/rnscreens/ScreenStack.kt b/node_modules/react-native-screens/android/src/main/java/com/swmansion/rnscreens/ScreenStack.kt
+index 9894cd4..66172da 100644
+--- a/node_modules/react-native-screens/android/src/main/java/com/swmansion/rnscreens/ScreenStack.kt
++++ b/node_modules/react-native-screens/android/src/main/java/com/swmansion/rnscreens/ScreenStack.kt
+@@ -220,6 +220,12 @@ class ScreenStack(
              }
          }
-+        // When the screen attaches, it should request focus (needed for TV)
-+        fragment?.view?.requestFocus()
-     }
  
-     private fun dispatchSheetDetentChanged(
++        if (newTop !== topScreenWrapper && newTop != null
++        ) {
++            topScreenWrapper?.screen?.descendantFocusability = FOCUS_BLOCK_DESCENDANTS
++            newTop.screen.descendantFocusability = FOCUS_AFTER_DESCENDANTS
++        }
++
+         createTransaction().let { transaction ->
+             if (stackAnimation != null) {
+                 transaction.setTweenAnimations(stackAnimation, shouldUseOpenAnimation)
+@@ -259,12 +265,14 @@ class ScreenStack(
+                 if (newTop.screen.requiresEnterTransitionPostponing()) {
+                     newTop.fragment.postponeEnterTransition()
+                 }
++                newTop.screen.requestFocus()
+                 transaction.add(id, newTop.fragment)
+             }
+ 
+             topScreenWrapper = newTop as? ScreenStackFragmentWrapper
+             stack.clear()
+             stack.addAll(screenWrappers.asSequence().map { it as ScreenStackFragmentWrapper })
++            topScreenWrapper?.screen?.requestFocus()
+ 
+             // All screens that were displayed at some point in time should, confusingly,
+             // have state set to ON_TOP == 2, and the ones that were preloaded should have state INACTIVE == 0
